@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='BlendSCAD',
-      version='20170429.0.0.2',
+      version='20170429.0.0.2c',
       description='OpenSCAD-ify Blender',
       url='https://github.com/3DLIRIOUS/BlendSCAD',
       author='3DLirious',

@@ -59,7 +59,7 @@ logodemo();
 
 ![](imgs/Openscad.png)
 
-### Translated to BlenderSCAD
+### Translated to BlendSCAD
 
 ...with added some color and treated as two grouped objects
 
@@ -82,19 +82,21 @@ logodemo();
 logodemo()
 </pre>
 
-![](imgs/Logo_BlenderSCAD.png) I've started developing BlenderSCAD on Blender 2.68/2.69\. The current version works fine with Blender 2.68 to the recent 2.74 and may still work on older Blender releases (not tested, though). OS wise, I'm using Blender on Windows7 64bit, but also tested it on Ubuntu (well sideloaded on an Android tablet).
+![](imgs/Logo_BlenderSCAD.png)
+
+I've started developing BlendSCAD on Blender 2.68/2.69\. The current version works fine with Blender 2.68 to the recent 2.74 and may still work on older Blender releases (not tested, though). OS wise, I'm using Blender on Windows7 64bit, but also tested it on Ubuntu (well sideloaded on an Android tablet).
 
 ## Install Instructions
 
-Installing BlenderSCAD is fairly simple: Meanwhile, I've split the project into a python module _blenderscad_, default user prefs and startup files for the _config_ folder and the BlenderSCAD panel to be placed in the _addons_ folder. Just installing the module is fine, the other two parts can be considered optional. Furthermore, there is a demo script _blenderscad_demo.py_ and some more demo files in the _tests_ and _examples_ folders.
+Installing BlendSCAD is fairly simple: Meanwhile, I've split the project into a python module _blendscad_, default user prefs and startup files for the _config_ folder and the BlendSCAD panel to be placed in the _addons_ folder. Just installing the module is fine, the other two parts can be considered optional. Furthermore, there is a demo script _blendscad_demo.py_ and some more demo files in the _tests_ and _examples_ folders.
 
-#### The blenderscad module
+#### The blendscad module
 
-First, place the blenderscad directory in Blender's module path:
+First, place the blendscad directory in Blender's module path:
 
-<pre>[installpath]\blender-2.69\2.69\scripts\modules\blenderscad
+<pre>[installpath]\blender-2.69\2.69\scripts\modules\blendscad
 or
-[installpath]\blender-2.74\2.74\scripts\modules\blenderscad
+[installpath]\blender-2.74\2.74\scripts\modules\blendscad
 </pre>
 
 As an alternative, you can also set a path in the console or the demo script to the folder containing the modules.  
@@ -110,18 +112,18 @@ or
 
 if you are using Windows (Otherwise, refer to the Blender documentation).
 
-#### BlenderSCAD panel
+#### BlendSCAD panel
 
 Well, this exeeds the original scope of providing OpenSCAD like operations and is rather similar to working with TinkerCAD. If you want to give it a try, install the addon and activate it in the user preferences:
 
-<pre>[installpath]\blender-2.69\2.69\scripts\addons\blenderscad_toolbar.py
+<pre>[installpath]\blender-2.69\2.69\scripts\addons\blendscad_toolbar.py
 or
-[installpath]\blender-2.74\2.74\scripts\addons\blenderscad_toolbar.py
+[installpath]\blender-2.74\2.74\scripts\addons\blendscad_toolbar.py
 </pre>
 
 #### Getting started
 
-SAVE all open work first, better go to a clean document. Open the demo script _blenderscad_demo.py_ in Blender's internal text editor and uncomment the demo section you want to try out. Simply use "run script". This is the easiest way. You can also save your script as part of a .blend file. Again, caution, there is a line in most of my demo scripts to wipe all objects of the open scene first for rapid testing. Congratulations, Blender is now your OpenSCAD-like IDE. You can even have the code compile while typing (Check "Live Edit" in the editor)
+SAVE all open work first, better go to a clean document. Open the demo script _blendscad_demo.py_ in Blender's internal text editor and uncomment the demo section you want to try out. Simply use "run script". This is the easiest way. You can also save your script as part of a .blend file. Again, caution, there is a line in most of my demo scripts to wipe all objects of the open scene first for rapid testing. Congratulations, Blender is now your OpenSCAD-like IDE. You can even have the code compile while typing (Check "Live Edit" in the editor)
 
 #### Alternatively, run via Python Console
 
@@ -129,7 +131,7 @@ This option is preferred if you use an external editor for the code.
 
 <pre>#Optionally, first clear command history in Python Console:
 bpy.ops.console.clear(history=True)
-filename = "<your path="">/BlenderSCAD.py
+filename = "<your path="">/BlendSCAD.py
 exec(compile(open(filename).read(), filename, 'exec'))</your> </pre>
 
 In general, I recommend to start Blender from a command line (Windows or Linux). This way you see all error messages and warnings.
@@ -137,6 +139,7 @@ In general, I recommend to start Blender from a command line (Windows or Linux).
 #### A few hints
 
 Blender files usually grow with all unlinked objects. It will garbage clean whenever you save and reopen the document. In order to make the "Live Edit" option work reasonable, I explicitly force the deletion (unlink) of intermediate objects and meshes (e.g. before union). Therefore, the files should stay cleaner than while editing a blender file in the usual way.  
+
 A last word of "warning": Pay attention to where your source file is saved. _ALT+S_ will save the file in the editor, _CTRL+S_ will save the "materialized" version of that file inside blender. Changes may be lost if you resync.
 
 ### Supported:
@@ -198,13 +201,13 @@ A last word of "warning": Pay attention to where your source file is saved. _ALT
 *   multimatrix
 *   ...
 
-## The BlenderSCAD Panel
+## The BlendSCAD Panel
 
 This is currently the most active area of my development - subject to change ;-) I wanted to have some interactivity to try some additional operators and tweaks easily. As this is a really simple to do in Blender, I've defined a panel. This is how the first version looked like:
 
 ![](imgs/Panel.png)
 
-It mainly reuses some code I've written for the BlenderSCAD enhancements. A very handy thing are the multi-object boolean operations: 3 clicks to have a cube, a cylinder and a sphere on the screen, a couple of clicks to align them, selecting several objects (Shift+Right Mouse), then just hit one of the Boolean buttons. Behind the scenes, it will create the required modifiers and apply them. A great productivity gain, I would say. Give it a try. Almost as convenient as Tinkercad (Group and Hole and Undo/Ungroup) still to be done. The object cleanup (using limited dissolve) really cleans up most resulting geometry.  
+It mainly reuses some code I've written for the BlendSCAD enhancements. A very handy thing are the multi-object boolean operations: 3 clicks to have a cube, a cylinder and a sphere on the screen, a couple of clicks to align them, selecting several objects (Shift+Right Mouse), then just hit one of the Boolean buttons. Behind the scenes, it will create the required modifiers and apply them. A great productivity gain, I would say. Give it a try. Almost as convenient as Tinkercad (Group and Hole and Undo/Ungroup) still to be done. The object cleanup (using limited dissolve) really cleans up most resulting geometry.  
 
 In general, most operations will be applied to the set of selected objects.  
 
