@@ -1,4 +1,4 @@
-# blenderscad - Init the core functionality
+# blendscad - Init the core functionality
 # by Michael Mlivoncic, 2013
 
 #import os
@@ -30,11 +30,11 @@ def main():
 	#black = (0.00,0.00,0.00,0)
 	#yellow = (1.00,1.00,0.00,0)
 	# for full color list:
-	#sys.path.append("<path to>/BlenderSCAD") 
-	#from blenderscad_colors import *
+	#sys.path.append("<path to>/BlendSCAD") 
+	#from blendscad_colors import *
 	# default color for object creators below...
 	defColor = (1.0,1.0,0.1,0)
-	#Emulate OpenSCAD Special variables  blenderscad.{fs,fa,fn}
+	#Emulate OpenSCAD Special variables  blendscad.{fs,fa,fn}
 	#$fa - minimum angle  $fn = 360 / $fa    / default: $fa = 12 -> segments = 30
 	fa=12;
 	#$fs - minimum size   default: 1 
@@ -45,21 +45,21 @@ def main():
 		if bpy.context.active_object.mode is not 'OBJECT': 
 			bpy.ops.object.mode_set(mode = 'OBJECT')
 	
-# from blenderscad.colors import *
-# from blenderscad.math import * 
-# from blenderscad.core import *
-# from blenderscad.primitives import *
-# from blenderscad.impexp import * # import, export, surface
+# from blendscad.colors import *
+# from blendscad.math import * 
+# from blendscad.core import *
+# from blendscad.primitives import *
+# from blendscad.impexp import * # import, export, surface
 
 # "reload()" is not reliable, especially with "from ... import *"
 # better using exec(compile(...)) instead while developing the modules..
 # ####################################################################
-# # This block helps during developmentas it reloads the blenderscad modules which are already present
+# # This block helps during developmentas it reloads the blendscad modules which are already present
 # # and may have changed...
-# # can be commented out or removed if you do not modify blenderscad libs during this blender session.
+# # can be commented out or removed if you do not modify blendscad libs during this blender session.
 # import imp; import sys
-# rel = ['blenderscad','blenderscad.math',
-# 'blenderscad.core', 'blenderscad.primitives','blenderscad.impexp', 'blenderscad.shapes']
+# rel = ['blendscad','blendscad.math',
+# 'blendscad.core', 'blendscad.primitives','blendscad.impexp', 'blendscad.shapes']
 # for mo in rel:
 	# if mo in sys.modules.keys():
 		# print ('reloading: '+mo+' -> '+ sys.modules[mo].__file__)
@@ -67,33 +67,33 @@ def main():
 # ####################################################################
 
 
-# init blenderscad in current namespace, so no need to type blenderscad.cube()
+# init blendscad in current namespace, so no need to type blendscad.cube()
 # similar to exported functions of a module....
 def initns(nsdict):
 	import sys
-	import blenderscad
-	import blenderscad.colors
-	import blenderscad.math
-	import blenderscad.core	
-	import blenderscad.primitives
-	import blenderscad.impexp
-	#import blenderscad.shapes
+	import blendscad
+	import blendscad.colors
+	import blendscad.math
+	import blendscad.core	
+	import blendscad.primitives
+	import blendscad.impexp
+	#import blendscad.shapes
 	try:
 		import __builtin__
 	except ImportError:
 		import builtins as __builtin__ #Python 3.0
 	
 	# all colors -> expecting nothing private in color file..
-	for name in dir(blenderscad.colors):
+	for name in dir(blendscad.colors):
 		if name.find("__") < 0 and name !="bpy":
-			nsdict.update({name: getattr(blenderscad.colors, name)  })			
+			nsdict.update({name: getattr(blendscad.colors, name)  })			
 	#
-	if blenderscad.mat is None:	
-		blenderscad.main()
-	# >>> print( dir(blenderscad.primitives))		
+	if blendscad.mat is None:	
+		blendscad.main()
+	# >>> print( dir(blendscad.primitives))		
 	public_prim = [ 'circle', 'cube', 'cylinder', 'mylayers', 'polygon', 'polyhedron', 'sphere', 'square']		
 	for name in public_prim:
-		nsdict.update({name: getattr(blenderscad.primitives, name)  })	
+		nsdict.update({name: getattr(blendscad.primitives, name)  })	
 	#
 	public_core = [  'listAllObjects', 'clearAllObjects', 'color', 'echo', 'str'
 	                 ,  'difference', 'union', 'intersection', 'join', 'group'
@@ -104,18 +104,18 @@ def initns(nsdict):
 					# ,'booleanOp', 'remesh','cleanup_object', 'dissolve', ''
 				]
 	for name in public_core:		    
-		nsdict.update({name: getattr(blenderscad.core, name)  })
-	#>>> print( dir(blenderscad.math))
+		nsdict.update({name: getattr(blendscad.core, name)  })
+	#>>> print( dir(blendscad.math))
 	public_math = [  'true','false', 'rands','acos', 'asin', 'atan', 'atan2', 'ceil', 'cos', 'exp', 'floor', 'ln'
 					, 'log', 'lookup', 'math', 'pi', 'sign', 'sin', 'sqrt', 'tan']
 	for name in public_math:	
-		nsdict.update({name: getattr(blenderscad.math, name)  })
+		nsdict.update({name: getattr(blendscad.math, name)  })
 	#		
 	public_impexp = [  'export', 'export_dxf', 'export_stl', 'fill_object', 'import_', 'import_dxf', 'import_stl', 'surface']
 	for name in public_impexp:	
-		nsdict.update({name: getattr(blenderscad.impexp, name)  })					
+		nsdict.update({name: getattr(blendscad.impexp, name)  })					
 	#
-	#print("Registered all public BlenderSCAD functions to namespace")
+	#print("Registered all public BlendSCAD functions to namespace")
 	
 			 
 			 

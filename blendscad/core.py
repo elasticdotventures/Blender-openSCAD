@@ -1,4 +1,4 @@
-﻿# blenderscad.core
+﻿# blendscad.core
 # Color name definitions as defined in OpenSCAD (and SVG)
 #
 # by Michael Mlivoncic, 2013
@@ -26,16 +26,16 @@
 #
 ### To edit in external editor and run in Blender's Python Console:
 #
-## filename = "O:/BlenderStuff/BlenderSCAD.py
+## filename = "O:/BlenderStuff/BlendSCAD.py
 ## clearAllObjects()
 ## exec(compile(open(filename).read(), filename, 'exec'))
 #
 ### Clear command history in Python Console:
 ## bpy.ops.console.clear(history=True)
 
-#from blenderscad import *
+#from blendscad import *
 #################################################################
-## BlenderSCAD core functionality
+## BlendSCAD core functionality
 #################################################################   
 import bpy
 import bpy_types
@@ -45,8 +45,8 @@ import sys
 import math
 from mathutils import Vector  # using Vector type below...
 
-import blenderscad # for "global" variables fn, defColor,...
-#from blenderscad.math import *  # true, false required...
+import blendscad # for "global" variables fn, defColor,...
+#from blendscad.math import *  # true, false required...
 
 # need to setup/reference our default material
 #mat = bpy.data.materials.get('useObjectColor')
@@ -54,7 +54,7 @@ import blenderscad # for "global" variables fn, defColor,...
 #	mat=bpy.data.materials.new('useObjectColor')
 #	mat.use_object_color=1
 
-#Emulate OpenSCAD Special variables  blenderscad.{fs,fa,fn}
+#Emulate OpenSCAD Special variables  blendscad.{fs,fa,fn}
 #fa - minimum angle  $fn = 360 / $fa    / default: $fa = 12 -> segments = 30
 #fs - minimum size   default: 1 
 #fn - number of fragments  | override of $fa/$fs , default = 0 , example: 36-> every 10 degrees
@@ -65,9 +65,9 @@ import blenderscad # for "global" variables fn, defColor,...
 def get_fragments_from_r(r, fn=None, fs=None, fa=None):
 	GRID_COARSE = 0.001;
 	GRID_FINE   = 0.000001;
-	if fn is None: fn=blenderscad.fn
-	if fs is None: fs=blenderscad.fs
-	if fa is None: fa=blenderscad.fa
+	if fn is None: fn=blendscad.fn
+	if fs is None: fs=blendscad.fs
+	if fa is None: fa=blendscad.fa
     # if r== ... well need to provide some radius
 	if r < GRID_FINE: return 3;
 	if fn > 0.0: return int(fn if fn >= 3 else 3);
@@ -132,15 +132,15 @@ def str(*args):
 #echo (str("This is ",number,3," and that's it."));
 
 ########################
-# Detect our BlenderSCAD group concept - we do not deal with hierarchies in general ;-)
+# Detect our BlendSCAD group concept - we do not deal with hierarchies in general ;-)
 def is_bsgroup(o):
 	# just a few sanity check: is just a bounding box and set to "BOUNDS" representation
 	# plus custom property
 	if o is None:
 		return False;
-	return o.get('blenderscad_group', False) and o.draw_type=='BOUNDS' and len(o.children) > 0 and len(o.data.vertices) == 8 and len(o.data.edges) == 12
+	return o.get('blendscad_group', False) and o.draw_type=='BOUNDS' and len(o.children) > 0 and len(o.data.vertices) == 8 and len(o.data.edges) == 12
 
-# traverse to top level object (root) of Blenderscad group (bsgroup) for any object in its hierarchy.
+# traverse to top level object (root) of Blendscad group (bsgroup) for any object in its hierarchy.
 def get_root(o):
 	root = o
 	while root.parent is not None: # traverse to the top.
@@ -154,10 +154,10 @@ def get_root(o):
 # OpenSCAD: color()
 # applies to given object o or the current context object the given color
 # color is either a float vector with 3 or 4 components (rgb , rgba) or a color name
-# from blenderscad.colors - no need to quote the string, as all colors defined as variables.
+# from blendscad.colors - no need to quote the string, as all colors defined as variables.
 def color( rgba=(1.0,1.0,1.0, 0), o=None):
 	if type(rgba)== type('SomeString'):
-		rgba = getattr(blenderscad.colors, rgba)		
+		rgba = getattr(blendscad.colors, rgba)		
 		#echo("newCol:" , rgba)		
 	if o is None:
 		o = bpy.context.object
@@ -170,13 +170,13 @@ def color( rgba=(1.0,1.0,1.0, 0), o=None):
 	# ensure we have already assigned a material.
 	if o.draw_type == 'WIRE' or o.draw_type == 'BOUNDS': # 'WIRE' seems to cause probe /w material...
 		return o
-	#print("called color() with:"); print(blenderscad.mat)
-	if blenderscad.mat.name not in o.data.materials.keys():
-			#print("setting material to:") ; print(blenderscad.mat)
+	#print("called color() with:"); print(blendscad.mat)
+	if blendscad.mat.name not in o.data.materials.keys():
+			#print("setting material to:") ; print(blendscad.mat)
 			if len(o.data.materials)>0:
-				o.data.materials[0]=blenderscad.mat
+				o.data.materials[0]=blendscad.mat
 			else:
-				o.data.materials.append(blenderscad.mat)		
+				o.data.materials.append(blendscad.mat)		
 	if len(rgba) == 3:
 		rgba=(rgba[0],rgba[1],rgba[2],0)
 	o.color = rgba
@@ -417,14 +417,14 @@ def group_old(o1,*objs):
 def group(o1,*objs):
 	res = o1
 	#creating a boundary box, similar to "empty", but using real box for "dimension" property...
-	bpy.ops.mesh.primitive_cube_add(location=(0.0,0.0,0.0), layers=blenderscad.mylayers)
+	bpy.ops.mesh.primitive_cube_add(location=(0.0,0.0,0.0), layers=blendscad.mylayers)
 	if bpy.context.active_object.mode is not 'OBJECT': 
 		bpy.ops.object.mode_set(mode = 'OBJECT')
 	bb = bpy.context.active_object # bb ~ reference to this bounding box representing group
-	#bb.data.materials.append(blenderscad.matTrans)
+	#bb.data.materials.append(blendscad.matTrans)
 	#bb.draw_type='TEXTURED' # TODO: set 3D View to Textured view..
 	bb.draw_type='BOUNDS' # same effect and probably faster: bounds only...
-	bb['blenderscad_group'] = True
+	bb['blendscad_group'] = True
 	bb.show_name=True
 	bb.hide_render=True
 	bb.name="bsgroup"
@@ -510,7 +510,7 @@ def ungroup(root=None):
 # Tinkercad like: Toggle status of "hole" for a given object.
 # subsequent "group" will treat holes differently: difference() instead of union()-like
 def hole(obj):
-	print("blenderscad.core.hole(): not yet implemented")			
+	print("blendscad.core.hole(): not yet implemented")			
 	return obj;
 
 
@@ -538,7 +538,7 @@ def bsgroup_unprotect(o):
 	
 	
 # define a little helper function o_func(o) to apply to all objects	selected or in hierarchy.
-# e.g. blenderscad.core.apply2objects(bpy.context.selected_objects, colorize_func, True)
+# e.g. blendscad.core.apply2objects(bpy.context.selected_objects, colorize_func, True)
 # no need for "bpy.ops.object.select_grouped(type='CHILDREN_RECURSIVE')" and making subtree "selectable" first
 def apply2objects(objs, o_func, nested=True):
 	for o in objs:
@@ -560,15 +560,15 @@ def apply2objects(objs, o_func, nested=True):
 	
 # clone all object (hierarchies) provided by objs and return ref to clones
 def	cloneOLD(objs):
-	blenderscad.core.apply2objects( objs , obj_select, True);
+	blendscad.core.apply2objects( objs , obj_select, True);
 	#bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={}})
 	bpy.ops.object.duplicate(linked=False,mode='TRANSLATION');
 	new_objs = bpy.context.selected_objects  # after cloning, all new objects are selected...
 	new_top_objs=[]; # distill all objects without parent in same set...
 	for n in new_objs:
 		if n.parent not in new_objs : new_top_objs.append(n);
-	#blenderscad.core.apply2objects( new_top_objs , obj_hide_unselect, True);	
-	blenderscad.core.apply2objects( objs , obj_unselect, True);
+	#blendscad.core.apply2objects( new_top_objs , obj_hide_unselect, True);	
+	blendscad.core.apply2objects( objs , obj_unselect, True);
 	# fix top level objects -> make old selectable again, make new selectable and active..
 	for o in objs:
 		o.hide_select=False; o.select=False;
@@ -579,7 +579,7 @@ def	cloneOLD(objs):
 # clone all object (hierarchies) provided by objs and return ref to clones
 def	clone(objs):
 	bpy.ops.object.select_all(action='DESELECT')
-	blenderscad.core.apply2objects( objs , bsgroup_unprotect, True);
+	blendscad.core.apply2objects( objs , bsgroup_unprotect, True);
 #	for o in objs: # just to be on the safe side, "objs" not necessary all selected...
 #		o.select=True
 #	bpy.ops.object.select_grouped(type='CHILDREN_RECURSIVE')
@@ -587,13 +587,13 @@ def	clone(objs):
 	#bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={}})	
 	bpy.ops.object.duplicate(linked=False,mode='TRANSLATION');
 	new_objs = bpy.context.selected_objects  # after cloning, all new objects are selected...
-	blenderscad.core.apply2objects( objs , bsgroup_protect, True);
-	blenderscad.core.apply2objects( new_objs , bsgroup_protect, True);
+	blendscad.core.apply2objects( objs , bsgroup_protect, True);
+	blendscad.core.apply2objects( new_objs , bsgroup_protect, True);
 	new_top_objs=[]; # distill all objects without parent in same set...
 	for n in new_objs:
 		if n.parent not in new_objs : new_top_objs.append(n);
-	#blenderscad.core.apply2objects( new_top_objs , obj_hide_unselect, True);	
-	#blenderscad.core.apply2objects( objs , obj_unselect, True);
+	#blendscad.core.apply2objects( new_top_objs , obj_hide_unselect, True);	
+	#blendscad.core.apply2objects( objs , obj_unselect, True);
 	# fix top level objects -> make old selectable again, make new selectable and active..
 	#for o in objs:
 	#	o.select=False;
@@ -973,7 +973,7 @@ def projection(o=None,cut=False):
 			bpy.ops.object.mode_set(mode = 'OBJECT')		
 	else: #if cut is False:
 		# "Flatten" whole object to zero in Z-Axis -> almost projection
-		blenderscad.core.dissolve(o)				
+		blendscad.core.dissolve(o)				
 		o.dimensions[2]=0.0 ; o.location[2]=0.0
 		bpy.ops.object.transform_apply(scale=True, location=True) # Apply the object’s transformation to its data
 		###### deselcting all meshes first...
@@ -994,8 +994,8 @@ def projection(o=None,cut=False):
 		##########
 	#o.data.update(calc_edges=True, calc_tessface=True)
 #	if cut is False:
-#		#blenderscad.core.cleanup_object(o=o,removeDoubles=True,subdivide=False, normalsRecalcOut=True)
-#		#blenderscad.core.remove_duplicates()		
+#		#blendscad.core.cleanup_object(o=o,removeDoubles=True,subdivide=False, normalsRecalcOut=True)
+#		#blendscad.core.remove_duplicates()		
 	print("num vertices: "+str(len(o.data.vertices)))
 	print("num polygons: "+str(len(o.data.polygons)))
 	return o	
@@ -1027,7 +1027,7 @@ def linear_extrude(height, o=None , center=True, convexity=-1, twist=0):
 		mod1.angle = math.radians(twist) # = twist	* (math.pi/180)
 		#bpy.ops.object.modifier_apply(apply_as='DATA', modifier='Mod1')				
 	#o.data.materials.append(mat)
-	#o.color = blenderscad.defColor
+	#o.color = blendscad.defColor
 	o.name = 'le('+o.name+')'	
 	o.data.name = 'le('+o.data.name+')'	
 	return o
@@ -1042,7 +1042,7 @@ def linear_extrude(height, o=None , center=True, convexity=-1, twist=0):
 #linear_extrude(height = 30, twist=-40, o=polygon(points=[[0,0],[100,0],[0,100],[5,5],[30,5],[5,30],[25,25],[25,60],[60,25]], paths=[[3,4,5],[0,1,2],[6,7,8]]))
 
 #, fn=None, fs=None, fa=None):
-#segments=blenderscad.core.get_fragments_from_r( r=r, fn=fn, fs=fs, fa=fa )
+#segments=blendscad.core.get_fragments_from_r( r=r, fn=fn, fs=fs, fa=fa )
 
 # OpenSCAD: rotate_extrude(convexity = <val>[, $fn = ...]){...}
 # This emulation would also swallow 3D objects ;-)
@@ -1050,7 +1050,7 @@ def linear_extrude(height, o=None , center=True, convexity=-1, twist=0):
 # Wiki on Blender Spin: http://de.wikibooks.org/wiki/Blender_Dokumentation:_Spin_und_SpinDup
 # example007.scad shows params file= and layer= -> not implemented, using import_dxf() instead
 def rotate_extrude(o=None, fn=None, fs=None, fa=None):	
-	#segments = fn if fn != -1 else blenderscad.fn # globals()["fn"]
+	#segments = fn if fn != -1 else blendscad.fn # globals()["fn"]
 	#print(segments)
 	if o is None:
 		o = bpy.context.object
@@ -1075,7 +1075,7 @@ def rotate_extrude(o=None, fn=None, fs=None, fa=None):
 	bb=o.bound_box[4][0] # boundbox 8x<x,y,z>->( LoX,LoY,LoZ, LoX,LoY,HiZ, LoX,HiY,HiZ, LoX,HiY,LoZ, HiX,LoY,LoZ, HiX,LoY,HiZ, HiX,HiY,HiZ, HiX,HiY,LoZ ). 
 	r = o.location[0] + bb  # outer radius of object.. X-location defines inner "hole", plus bound box outer in X direction..
 	#print("boundBox"); print(bb); print("radius"); print(r);
-	segments=blenderscad.core.get_fragments_from_r( r=r, fn=fn, fs=fs, fa=fa )
+	segments=blendscad.core.get_fragments_from_r( r=r, fn=fn, fs=fs, fa=fa )
 	angle = math.pi*2.0 #(360 * pi / 180) # ggrrr.. need to convert or debug for hours :-)
 	bpy.ops.mesh.spin(steps=segments, dupli=False, angle=angle, center=(0.0, 0.0, 0.0), axis=(0.0, 0.0, 1.0))
 	# if duplicate: delete original meshes... still selected.
@@ -1091,7 +1091,7 @@ def rotate_extrude(o=None, fn=None, fs=None, fa=None):
 	o.name = 're('+o.name+')'
 	o.data.name = 'le('+o.data.name+')'	
 	#	o.data.materials.append(mat)
-	#	o.color = blenderscad.defColor
+	#	o.color = blendscad.defColor
 	# TODO: need to cleanup the result
 	#bpy.ops.mesh.flip_normals()  # blender treats normals the other way around than OpenSCAD...
 	bpy.ops.object.mode_set(mode = 'EDIT')	

@@ -1,34 +1,34 @@
-# BlenderSCAD Demos
+# BlendSCAD Demos
 # Just a bunch of demos and test cases.
 # by Michael Mlivoncic, 2013
 #
 
-# if your blenderscad is NOT in the Blender module dir...
-#  ( <path>/blender-2.69-windows64/2.69/scripts/modules/blenderscad)
-# change this line to where your blenderscad is located (as a subdir)
+# if your blendscad is NOT in the Blender module dir...
+#  ( <path>/blender-2.69-windows64/2.69/scripts/modules/blendscad)
+# change this line to where your blendscad is located (as a subdir)
 #import sys
 #sys.path.append("O:/BlenderStuff") 
-#from blenderscad.shapes import *
+#from blendscad.shapes import *
 
 from mathutils import Vector
 
 
-# This block helps during developmentas it reloads the blenderscad modules which are already present
+# This block helps during development as it reloads the blendscad modules which are already present
 # and may have changed...
-# can be commented out or removed if you do not modify blenderscad libs during this blender session.
+# can be commented out or removed if you do not modify blendscad libs during this blender session.
 import imp; import sys
-rel = ['blenderscad','blenderscad.math',
-'blenderscad.core', 'blenderscad.primitives','blenderscad.impexp', 'blenderscad.shapes']
+rel = ['blendscad','blendscad.math',
+'blendscad.core', 'blendscad.primitives','blendscad.impexp', 'blendscad.shapes']
 for mo in rel:
 	if mo in sys.modules.keys():
 		print ('reloading: '+mo+' -> '+ sys.modules[mo].__file__)
 		imp.reload(sys.modules[mo])
 ########################
 
-import blenderscad
-#from blenderscad.shapes import *   # optional 
+import blendscad
+#from blendscad.shapes import *   # optional 
 
-blenderscad.initns(globals()) # to avoid prefixing all calls, we make "aliases" in current namespace
+blendscad.initns(globals()) # to avoid prefixing all calls, we make "aliases" in current namespace
 
 ###############################
 import time
@@ -39,12 +39,12 @@ echo ("BEGIN", st)
 
 
 
-## List loaded blenderscad related (sub)modules
+## List loaded blendscad related (sub)modules
 def list_modules():
 	for mod in sys.modules.values():
 		str1 = "|"+str(mod) + "|"
-		#if str1.startswith("<module 'blenderscad") is True:
-		if str1.find("blenderscad") >= 0:
+		#if str1.startswith("<module 'blendscad") is True:
+		if str1.find("blendscad") >= 0:
 			print (mod)
 	
 #list_modules()
@@ -68,8 +68,8 @@ clearAllObjects()
 
 # changing global "environment variables"
 #
-blenderscad.fn=72  # emulate OpenSCAD's $fn
-blenderscad.defColor=yellow
+blendscad.fn=72  # emulate OpenSCAD's $fn
+blendscad.defColor=yellow
 
 
 # TODO: search()
@@ -339,7 +339,7 @@ def surface_demo():
 #surface_demo()
 
 def pacman():
-	blenderscad.fn=128
+	blendscad.fn=128
 	return scale([2,2,2], translate([0,0,6],rotate([90,45,0],
 	    difference(
 	        sphere(r=6)        
@@ -515,13 +515,13 @@ def TODO_exportDXF():
 
 print("num vertices: "+str(len(o.data.vertices)))
 print("num polygons: "+str(len(o.data.polygons)))
-blenderscad.core.dissolve(o)
+blendscad.core.dissolve(o)
 print("num vertices: "+str(len(o.data.vertices)))
 print("num polygons: "+str(len(o.data.polygons)))
-blenderscad.core.decimate(o)
+blendscad.core.decimate(o)
 print("num vertices: "+str(len(o.data.vertices)))
 print("num polygons: "+str(len(o.data.polygons)))
-#blenderscad.core.remesh(o)
+#blendscad.core.remesh(o)
 
 
 ##########################################################################

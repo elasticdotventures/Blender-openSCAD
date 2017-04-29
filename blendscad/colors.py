@@ -1,4 +1,4 @@
-# blenderscad.colors
+# blendscad.colors
 # Color name definitions as defined in OpenSCAD (and SVG)
 # by Michael Mlivoncic, 2013
 #

@@ -5,22 +5,22 @@
 
 from mathutils import Vector  # using Vector type below...
 
-# This block helps during developmentas it reloads the blenderscad modules which are already present
+# This block helps during developmentas it reloads the blendscad modules which are already present
 # and may have changed...
-# can be commented out or removed if you do not modify blenderscad libs during this blender session.
+# can be commented out or removed if you do not modify blendscad libs during this blender session.
 import imp; import sys
-rel = ['blenderscad','blenderscad.math',
-'blenderscad.core', 'blenderscad.primitives','blenderscad.impexp', 'blenderscad.shapes']
+rel = ['blendscad','blendscad.math',
+'blendscad.core', 'blendscad.primitives','blendscad.impexp', 'blendscad.shapes']
 for mo in rel:
 	if mo in sys.modules.keys():
 		print ('reloading: '+mo+' -> '+ sys.modules[mo].__file__)
 		imp.reload(sys.modules[mo])
 ########################
 
-import blenderscad
-#from blenderscad.shapes import *   # optional 
+import blendscad
+#from blendscad.shapes import *   # optional 
 
-blenderscad.initns(globals()) # to avoid prefixing all calls, we make "aliases" in current namespace
+blendscad.initns(globals()) # to avoid prefixing all calls, we make "aliases" in current namespace
 
 ## Clear the open .blend file!!!
 clearAllObjects()
@@ -33,12 +33,12 @@ st = datetime.datetime.fromtimestamp( time.time() ).strftime('%Y-%m-%d %H:%M:%S'
 echo ("BEGIN", st)
 
 ###### End of Header ##############################################################################
-blenderscad.fa=0.1;
+blendscad.fa=0.1;
 
 def example002():
 
     intersection(
-        blenderscad.core.difference(
+        blendscad.core.difference(
             union(
                 cube([30, 30, 30], center = true)
                 , translate([0, 0, -25],
@@ -60,7 +60,7 @@ example002()
 
 # experimenting with dissolve to cleanup shape..
 import bpy; o = bpy.context.scene.objects.active
-#o = blenderscad.core.dissolve(o)
+#o = blendscad.core.dissolve(o)
 #o= cleanup_object(o=o, quads=True)
 
 ###### Begin of Footer ##############################################################################

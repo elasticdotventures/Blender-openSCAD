@@ -1,4 +1,4 @@
-# blenderscad.math
+# blendscad.math
 # This submodule  covers OpenSCAD's mathematical function area
 #
 # by Michael Mlivoncic, 2013

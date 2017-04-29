@@ -1,15 +1,15 @@
 #####################################################################
-## BlenderSCAD Import/Export functions -  including "surface()"
+## BlendSCAD Import/Export functions -  including "surface()"
 # 
 ## by Michael Mlivoncic, 2013
 #
 
 import bpy 
-import blenderscad
-#from blenderscad import *  # contains blenderscad core, primitives, math and colors
+import blendscad
+#from blendscad import *  # contains blendscad core, primitives, math and colors
 
 
-#mat = blenderscad.mat
+#mat = blendscad.mat
 	
 	
 # OpenSCAD: import_stl("filename.stl", convexity = <val>);
@@ -17,8 +17,8 @@ import blenderscad
 def import_stl(file , layer="", convexity=10):
 	bpy.ops.import_mesh.stl(filepath=file)
 	o = bpy.context.active_object
-	o.data.materials.append(blenderscad.mat)
-	o.color = blenderscad.defColor
+	o.data.materials.append(blendscad.mat)
+	o.color = blendscad.defColor
 	return o
 
 #import_stl("O:/BlenderStuff/demo.stl")
@@ -110,7 +110,7 @@ def export(file, o=None):
 		
 
 ##################
-# BlenderSCAD: surface operator
+# BlendSCAD: surface operator
 # ported from OpenSCAD by Michael Mlivoncic
 ## ------------------------------------------
 # Credits: surface is ported from surface code of OpenSCAD
@@ -213,9 +213,9 @@ def surface(file, center=False, convexity=1):
 	# result reuses the polyhedron implementation...
 	# 
 	#polyhedron(points = [ [0, -10, 60], [0, 10, 60], [0, 10, 0] ], faces = [ [0,3,2] ]  )
-	o = blenderscad.primitives.polyhedron(points , faces)
+	o = blendscad.primitives.polyhedron(points , faces)
 	#cleanup_object(o,removeDoubles=False)	
-	#blenderscad.core.remove_duplicates()
+	#blendscad.core.remove_duplicates()
 	return o
 
 ## ------------------------------------------

@@ -5,9 +5,9 @@
 
 from mathutils import Vector  # using Vector type below...
 
-import blenderscad 
+import blendscad 
 
-blenderscad.initns( globals() ) # try to add BlenderSCAD names to current namespace .. as if they would be in this file...
+blendscad.initns( globals() ) # try to add BlendSCAD names to current namespace .. as if they would be in this file...
 
 
 ## Clear the open .blend file!!!

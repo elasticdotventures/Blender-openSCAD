@@ -1,34 +1,34 @@
-# BlenderSCAD Tests
+# BlendSCAD Tests
 # Just a bunch of demos and test cases.
 # by Michael Mlivoncic, 2013
 #
 
-# if your blenderscad is NOT in the Blender module dir...
-#  ( <path>/blender-2.69-windows64/2.69/scripts/modules/blenderscad)
-# change this line to where your blenderscad is located (as a subdir)
+# if your blendscad is NOT in the Blender module dir...
+#  ( <path>/blender-2.69-windows64/2.69/scripts/modules/blendscad)
+# change this line to where your blendscad is located (as a subdir)
 #import sys
 #sys.path.append("O:/BlenderStuff") 
-#from blenderscad.shapes import *
+#from blendscad.shapes import *
 
 from mathutils import Vector
 
 
-# This block helps during developmentas it reloads the blenderscad modules which are already present
+# This block helps during development as it reloads the blendscad modules which are already present
 # and may have changed...
-# can be commented out or removed if you do not modify blenderscad libs during this blender session.
+# can be commented out or removed if you do not modify blendscad libs during this blender session.
 import imp; import sys
-rel = ['blenderscad','blenderscad.math',
-'blenderscad.core', 'blenderscad.primitives','blenderscad.impexp', 'blenderscad.shapes']
+rel = ['blendscad','blendscad.math',
+'blendscad.core', 'blendscad.primitives','blendscad.impexp', 'blendscad.shapes']
 for mo in rel:
 	if mo in sys.modules.keys():
 		print ('reloading: '+mo+' -> '+ sys.modules[mo].__file__)
 		imp.reload(sys.modules[mo])
 ########################
 
-import blenderscad
-#from blenderscad.shapes import *   # optional 
+import blendscad
+#from blendscad.shapes import *   # optional 
 
-blenderscad.initns(globals()) # to avoid prefixing all calls, we make "aliases" in current namespace
+blendscad.initns(globals()) # to avoid prefixing all calls, we make "aliases" in current namespace
 
 ## Clear the open .blend file!!!
 clearAllObjects()
@@ -42,7 +42,7 @@ echo ("BEGIN ", st)
 ##############################
 
 
-blenderscad.fa=20
+blendscad.fa=20
 ## cylinder(h = 1, r=1, r1 = -1, r2 = -1, center = False, d=-1, d1=-1, d2=-1,   fn=0, fs=1, fa=12)
 #o=cylinder(d=30,h=30,fn=3)
 #o=sphere(20,fs=1)
@@ -64,18 +64,18 @@ o=translate([20,0,0],polygon(points=[[0,0],[100,0],[0,100],[5,5],[30,5],[5,30],[
 o=rotate_extrude (o,fn=30)
 
 #o=rotate_extrude (o,fa=8)
-#o=blenderscad.core.dissolve(o)
+#o=blendscad.core.dissolve(o)
 ##########################################################################
 
 print("num vertices: "+str(len(o.data.vertices)))
 print("num polygons: "+str(len(o.data.polygons)))
-# blenderscad.core.dissolve(o)
+# blendscad.core.dissolve(o)
 # print("num vertices: "+str(len(o.data.vertices)))
 # print("num polygons: "+str(len(o.data.polygons)))
-# blenderscad.core.decimate(o)
+# blendscad.core.decimate(o)
 # print("num vertices: "+str(len(o.data.vertices)))
 # print("num polygons: "+str(len(o.data.polygons)))
-# #blenderscad.core.remesh(o)
+# #blendscad.core.remesh(o)
 
 
 ##########################################################################

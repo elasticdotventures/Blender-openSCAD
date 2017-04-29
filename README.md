@@ -22,6 +22,7 @@ Installing in Blender's Python 3 with pip; Blender doesn't come with pip, so we 
 The above path is for Blender 2.78 installed in the default location on Windows; modify accordingly for your OS.
 
 The original README is shown below:
+
 ---
 Blender is a powerful piece of Open Source software which is also useful in the 3D printing space. Coming from OpenSCAD or Tinkercad, there are some issues at the first glance:
 

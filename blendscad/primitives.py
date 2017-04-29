@@ -1,5 +1,5 @@
 #####################################################################
-## BlenderSCAD Primitives
+## BlendSCAD Primitives
 #
 ## by Michael Mlivoncic, 2013
 #
@@ -8,11 +8,11 @@ import bpy
 
 from mathutils import Vector
 
-import blenderscad # for "global" variables fn, defColor,...
-#from blenderscad.math import *  # true, false required...
+import blendscad # for "global" variables fn, defColor,...
+#from blendscad.math import *  # true, false required...
 
-mylayers=blenderscad.mylayers
-#mat=blenderscad.mat
+mylayers=blendscad.mylayers
+#mat=blendscad.mat
 	
 # Construct a cube mesh 
 # bpy.ops.mesh.primitive_cube_add(view_align=False, enter_editmode=False, location=(0.0, 0.0, 0.0), rotation=(0.0, 0.0, 0.0), layers=(False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
@@ -30,9 +30,9 @@ def cube(size=(1.0,1.0,1.0), center=False):
 	o.name='cu' # +str(index)
 	o.data.name='cu'
 	# simple color will only display via my def. Material setting
-	o.data.materials.append(blenderscad.mat)
+	o.data.materials.append(blendscad.mat)
 	# just some default color
-	o.color = blenderscad.defColor
+	o.color = blendscad.defColor
 	o.draw_type='SOLID'
 	# scale
 	#bpy.ops.transform.resize(value=size)
@@ -46,7 +46,7 @@ def cube(size=(1.0,1.0,1.0), center=False):
 # Construct a cylinder mesh
 # bpy.ops.mesh.primitive_cylinder_add(vertices=32, radius=1.0, depth=2.0, end_fill_type='NGON', view_align=False, enter_editmode=False, location=(0.0, 0.0, 0.0), rotation=(0.0, 0.0, 0.0), layers=(False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
 def _cylinder(h=1, r=1, segments=36):
-	#segments = fn if fn != -1 else blenderscad.fn # globals()["fn"]
+	#segments = fn if fn != -1 else blendscad.fn # globals()["fn"]
 	bpy.ops.mesh.primitive_cylinder_add(location=(0.0,0.0,0.0), radius=r , depth=h , vertices=segments, layers=mylayers)  
 	#o = bpy.data.objects['Cylinder'] # not safe enough if an earlier object named 'Cylinder' exists...
 	o = bpy.context.active_object
@@ -57,7 +57,7 @@ def _cylinder(h=1, r=1, segments=36):
 # Construct a conic mesh 
 #  bpy.ops.mesh.primitive_cone_add(vertices=32, radius1=1.0, radius2=0.0, depth=2.0, end_fill_type='NGON', view_align=False, enter_editmode=False, location=(0.0, 0.0, 0.0), rotation=(0.0, 0.0, 0.0), layers=(False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False, False))
 def _cone(h=1, r1=1, r2=2, segments=36):
-	#segments = fn if fn != -1 else blenderscad.fn # globals()["fn"]
+	#segments = fn if fn != -1 else blendscad.fn # globals()["fn"]
 	bpy.ops.mesh.primitive_cone_add(location=(0.0,0.0,0.0), radius1=r1, radius2=r2, depth=h , vertices=segments, layers=mylayers)
 	#o = bpy.data.objects['Cone'] # not safe enough if an earlier object named 'Cone' exists...
 	o = bpy.context.active_object
@@ -73,14 +73,14 @@ def cylinder(h = 1, r=1, r1 = -1, r2 = -1, center = False, d=-1, d1=-1, d2=-1, f
 	if d1 != -1 and d2 != -1 :
 		r1 = d1 / 2.0 ; r2 = d2 / 2.0;				
 	if r1 != -1 and r2 != -1 :
-		segments=blenderscad.core.get_fragments_from_r( r=min(r1,r2), fn=fn, fs=fs, fa=fa )
+		segments=blendscad.core.get_fragments_from_r( r=min(r1,r2), fn=fn, fs=fs, fa=fa )
 		o =_cone(h,r1,r2,segments)
 	else:
-		segments=blenderscad.core.get_fragments_from_r( r=r, fn=fn, fs=fs, fa=fa )
+		segments=blendscad.core.get_fragments_from_r( r=r, fn=fn, fs=fs, fa=fa )
 		o =_cylinder(h,r,segments)
 	# just a suitable default material and some default color
-	o.data.materials.append(blenderscad.mat)
-	o.color = blenderscad.defColor
+	o.data.materials.append(blendscad.mat)
+	o.color = blendscad.defColor
 	o.draw_type='SOLID'
 	if center==False:
 		#bpy.ops.transform.translate(value=(0.0,0.0,h/2.0))  # causes "convertViewVec: called in an invalid context"
@@ -94,16 +94,16 @@ def cylinder(h = 1, r=1, r1 = -1, r2 = -1, center = False, d=-1, d1=-1, d2=-1, f
 def sphere(r=1, d=-1, center=True,  fn=None, fs=None, fa=None):
 	if d != -1 :
 		  r= d/2;
-	segments=blenderscad.core.get_fragments_from_r( r=r, fn=fn, fs=fs, fa=fa )
+	segments=blendscad.core.get_fragments_from_r( r=r, fn=fn, fs=fs, fa=fa )
 	bpy.ops.mesh.primitive_uv_sphere_add(size=r , segments=segments, ring_count=segments,location=(0.0,0.0,0.0), layers=mylayers)
 	#o = bpy.data.objects['Sphere'] # not safe enough if an earlier object named 'Sphere' exists...
 	o = bpy.context.active_object
 	o.name='sp' # +str(index)
 	o.data.name='sp'
 	# simple color will only display via my def. Material setting
-	o.data.materials.append(blenderscad.mat)
+	o.data.materials.append(blendscad.mat)
 	# just some default color
-	o.color = blenderscad.defColor
+	o.color = blendscad.defColor
 	o.draw_type='SOLID'
 	# scale
 	#bpy.ops.transform.resize(value=size)
@@ -115,7 +115,7 @@ def sphere(r=1, d=-1, center=True,  fn=None, fs=None, fa=None):
 def circle(r=10.0, d=-1, fill=False, center=True, fn=None, fs=None, fa=None):
 	if d != -1 :
 		  r= d/2;
-	segments=blenderscad.core.get_fragments_from_r( r=r, fn=fn, fs=fs, fa=fa )
+	segments=blendscad.core.get_fragments_from_r( r=r, fn=fn, fs=fs, fa=fa )
 	if fill is False:    
 		fill_type = 'NOTHING'
 	else:
@@ -126,8 +126,8 @@ def circle(r=10.0, d=-1, fill=False, center=True, fn=None, fs=None, fa=None):
 	o = bpy.context.active_object
 	o.name='ci' # +str(index)
 	o.data.name='ci'
-	o.data.materials.append(blenderscad.mat)
-	o.color = blenderscad.defColor
+	o.data.materials.append(blendscad.mat)
+	o.color = blendscad.defColor
 	o.draw_type='SOLID'
 	return o
 	
@@ -139,8 +139,8 @@ def polygon(points, paths=[], fill=True):
 	# Create mesh and object
 	me = bpy.data.meshes.new('p')
 	o = bpy.data.objects.new('p', me)
-	o.data.materials.append(blenderscad.mat)
-	o.color = blenderscad.defColor
+	o.data.materials.append(blendscad.mat)
+	o.color = blendscad.defColor
 	o.draw_type='SOLID'
 	o.location = (0.0,0.0,0.0)
 	o.show_name = True
@@ -241,8 +241,8 @@ def polyhedron(points, faces=[], triangles=[], fill=False):
 	# Create mesh and object
 	me = bpy.data.meshes.new('p')
 	o = bpy.data.objects.new('p', me)
-	o.data.materials.append(blenderscad.mat)
-	o.color = blenderscad.defColor
+	o.data.materials.append(blendscad.mat)
+	o.color = blendscad.defColor
 	o.draw_type='SOLID'
 	o.location = (0.0,0.0,0.0)
 	o.show_name = True

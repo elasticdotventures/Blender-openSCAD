@@ -9,24 +9,24 @@
 from mathutils import Vector  # using Vector type below...
 
 
-# This block helps during developmentas it reloads the blenderscad modules which are already present
+# This block helps during developmentas it reloads the blendscad modules which are already present
 # and may have changed...
-# can be commented out or removed if you do not modify blenderscad libs during this blender session.
+# can be commented out or removed if you do not modify blendscad libs during this blender session.
 import imp; import sys
-rel = ['blenderscad','blenderscad.math',
-'blenderscad.core', 'blenderscad.primitives','blenderscad.impexp', 'blenderscad.shapes']
+rel = ['blendscad','blendscad.math',
+'blendscad.core', 'blendscad.primitives','blendscad.impexp', 'blendscad.shapes']
 for mo in rel:
 	if mo in sys.modules.keys():
 		print ('reloading: '+mo+' -> '+ sys.modules[mo].__file__)
 		imp.reload(sys.modules[mo])
 ########################
 
-import blenderscad 
+import blendscad 
 
 import bpy
 #bpy.ops.wm.console_toggle()
 
-blenderscad.initns( globals() ) # try to add BlenderSCAD names to current namespace .. as if they would be in this file...
+blendscad.initns( globals() ) # try to add BlendSCAD names to current namespace .. as if they would be in this file...
 
 
 ## Clear the open .blend file!!!
@@ -81,9 +81,9 @@ def example002():
 #linear_extrude(10,o)
 #o=rotate_extrude(o)
 o=example002()
-o=blenderscad.core.cleanup_object(o, beautify=True)
+o=blendscad.core.cleanup_object(o, beautify=True)
 #o=hull(o)
-#o=blenderscad.core.dissolve(o)
+#o=blendscad.core.dissolve(o)
 
 #cube(20)
 

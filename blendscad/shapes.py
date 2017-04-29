@@ -1,14 +1,14 @@
-# blenderscad.shapes
+# blendscad.shapes
 # Additional Shape library, a subset of "MCAD" and OpenSCAD library folder. extend as needed.
 #
 # by Michael Mlivoncic, 2013
 #
 
 
-import blenderscad
+import blendscad
 
 
-blenderscad.initns(globals()) # to avoid prefixing all calls, we make "aliases" in current namespace
+blendscad.initns(globals()) # to avoid prefixing all calls, we make "aliases" in current namespace
 
 
 #################################################################

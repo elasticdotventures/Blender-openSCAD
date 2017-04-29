@@ -4,14 +4,14 @@
 #sys.path.append("O:/BlenderStuff") 
 
 
-import blenderscad 
+import blendscad 
 
 import imp
-imp.reload(blenderscad)
-imp.reload(blenderscad.core)
-imp.reload(blenderscad.primitives)
+imp.reload(blendscad)
+imp.reload(blendscad.core)
+imp.reload(blendscad.primitives)
 
-blenderscad.initns( globals() ) # try to add BlenderSCAD names to current namespace .. as if they would be in this file...
+blendscad.initns( globals() ) # try to add BlendSCAD names to current namespace .. as if they would be in this file...
 
 
 ## Clear the open .blend file!!!
