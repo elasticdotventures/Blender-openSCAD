@@ -1,0 +1,8 @@
+include LICENSE.md
+include README.md
+include blendscad_convert.py
+include blendscad_demos.py
+recursive-include addons *
+recursive-include config *
+recursive-include examples *
+recursive-include tests *
