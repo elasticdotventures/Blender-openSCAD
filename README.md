@@ -1,6 +1,14 @@
-# BlendSCAD - bridging the gap between Blender and OpenSCAD
+# Blender-💌-SCAD - finding the love between Blender and OpenSCAD
 ---
-BlendSCAD is a fork of [Michael Mlivoncic's](https://github.com/miguelitoelgrande) BlenderSCAD module, with the name changed slightly to avoid confusion with the original. Development on the original seems to be paused at the moment; it is hoped that this fork can help revive the project and take it in new directions. This fork has the following design goals:
+BlendSCAD is a fork of [Michael Mlivoncic's](https://github.com/miguelitoelgrande) BlenderSCAD module, with the name changed slightly to avoid confusion with the original. Development on the original and subsequent [](@3DLIRIOUS/Blendscad) seems to be delayed; it is hoped that THIS fork can help revive the project and take it in new directions specifically:
+* CI/CD build validation/tests
+* using nullsoft NSIS, chocolatey, winget or equivalent win installer
+* using RUST cargo as linux win installer
+* library manager for importing/exporting objects synchronization in/out from other software via openscad
+* using LSP syntax integration from VS-Code in blender
+
+This fork has the following design goals:
+* Community: socialization and awareness of OpenSCAD in the blender community.
 
 * Compatibility with [SolidPython](https://github.com/SolidCode/SolidPython); the goal is for the same scripts to run on each.
 * Add new OpenSCAD features, such as text. Aiming for full compatibility with OpenSCAD; the only significant issue at the moment appears to be the Minkowski function.
