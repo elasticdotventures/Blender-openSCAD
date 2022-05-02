@@ -1,11 +1,44 @@
-# BlendSCAD - bridging the gap between Blender and OpenSCAD
+# Blender-openSCAD - Blender 💌 OpenSCAD
 ---
-BlendSCAD is a fork of [Michael Mlivoncic's](https://github.com/miguelitoelgrande) BlenderSCAD module, with the name changed slightly to avoid confusion with the original. Development on the original seems to be paused at the moment; it is hoped that this fork can help revive the project and take it in new directions. This fork has the following design goals:
 
-* Compatibility with [SolidPython](https://github.com/SolidCode/SolidPython); the goal is for the same scripts to run on each.
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](https://www.repostatus.org/badges/latest/wip.svg)](https://www.repostatus.org/#wip)
+*VERY WIP*
+
+## Video Tutorial
+📽️ (Youtube)[https://www.youtube.com/watch?v=aZq8ZlmqHJo]
+
+
+Blender-openSCAD renamed slightly to avoid confusion with the original where the word "blend" was ambigious. Contacted original authors to get status updates. 
+
+ So far thee 'master' branch was renamed to 'main' which is regarded as less-offensive neo-venacular.
+ 
+ Github issues have been enabled and pull requests for ideas/contributions are welcome to this repo. 
+
+The blender project is being integrated with the
+ (elasticdotventures/awesome-openscad) RUST/wasm cargo installer for openSCAD.
+
+The historical openSCAD package available on [PyPI](https://pypi.python.org/pypi/BlendSCAD), was installed with pip and this will be installed with cargo. 
+
+Development on the original python seems to be halted; it is hoped that this fork can attach this plugin to communities and take openSCAD in novel directions. 
+
+This fork has the following design goals:
+
+* Ease of Use, quick painless less technically complex install into Blender
+	* RUST cargo for Linux/Unix
+	* Windows win-get, chocolatey nsis or equivalent
+
+* Compatibility with [VSCode] for editing & synchronization of versions & language service provider intellisense (code checker), import/export pipeline on build. 
+
+* Unified compositional component library that can be embedded for discovering parameterically defined objects & tools. 
+
+## from @3DLIRIOUS/blendSCAD
+
+* [SolidPython](https://github.com/SolidCode/SolidPython) &amp; the goal is for the same scripts to run on each.
+
 * Add new OpenSCAD features, such as text. Aiming for full compatibility with OpenSCAD; the only significant issue at the moment appears to be the Minkowski function.
+
 * Add Blender-only extras and enhancements, such as the ability to work with vertex colors or textures to support 3D printable full color models, and additional modifiers such as Solidify.
-* Available on [PyPI](https://pypi.python.org/pypi/BlendSCAD), and can be installed via pip.
+
 * The BlendSCAD Panel will not be supported at the moment, and won't be kept up to date with changes in the underlying module. This may be picked back up again in the future.
 
 Installing in Blender's Python 3 with pip; Blender doesn't come with pip, so we have to install it first:
@@ -220,3 +253,6 @@ As I need to see the "real" console output anyways, I've decided to switch from 
 ![](imgs/BlenderIDE2.png)
 
 Just tweak the paths in the text opening in the startup code (right) and run it. This will make the Panel appear - no full-fledged add-on at the time being.
+
+
+
