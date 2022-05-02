@@ -5,21 +5,23 @@
 *VERY WIP*
 
 ## Video Tutorial
-📽️ (Youtube)[https://www.youtube.com/watch?v=aZq8ZlmqHJo]
+📽️ [Youtube](https://www.youtube.com/watch?v=aZq8ZlmqHJo)
 
+## Background
+third time is the charm?
 
 Blender-openSCAD renamed slightly to avoid confusion with the original where the word "blend" was ambigious. Contacted original authors to get status updates. 
 
- So far thee 'master' branch was renamed to 'main' which is regarded as less-offensive neo-venacular.
+ So far the 'master' branch was renamed to 'main' which is regarded as less-offensive neo-venacular.
  
  Github issues have been enabled and pull requests for ideas/contributions are welcome to this repo. 
 
 The blender project is being integrated with the
- (elasticdotventures/awesome-openscad) RUST/wasm cargo installer for openSCAD.
+ [elasticdotventures/awesome-openscad]() RUST/wasm cargo installer for [openSCAD](), [JSopenscad](), [cadhub]().
 
-The historical openSCAD package available on [PyPI](https://pypi.python.org/pypi/BlendSCAD), was installed with pip and this will be installed with cargo. 
+The historical openSCAD package is available on [PyPI](https://pypi.python.org/pypi/BlendSCAD), that is installed with pip and this version will be use RUST cargo instead of pip. 
 
-Development on the original python seems to be halted; it is hoped that this fork can attach this plugin to communities and take openSCAD in novel directions. 
+Development on the original python seems to be halted; it is hoped that this fork can attach this plugin to communities and take openSCAD & RUST can take this in novel directions. 
 
 This fork has the following design goals:
 
@@ -31,7 +33,7 @@ This fork has the following design goals:
 
 * Unified compositional component library that can be embedded for discovering parameterically defined objects & tools. 
 
-## from @3DLIRIOUS/blendSCAD
+## from [3DLIRIOUS/blendSCAD]() .. continued
 
 * [SolidPython](https://github.com/SolidCode/SolidPython) &amp; the goal is for the same scripts to run on each.
 
