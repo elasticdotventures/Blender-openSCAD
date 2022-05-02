@@ -7,7 +7,7 @@
 ## Video Tutorial
 📽️ [Youtube](https://www.youtube.com/watch?v=aZq8ZlmqHJo)
 
-## Background
+## Background/Journal
 third time is the charm?
 
 Blender-openSCAD renamed slightly to avoid confusion with the original where the word "blend" was ambigious. Contacted original authors to get status updates. 
@@ -17,21 +17,21 @@ Blender-openSCAD renamed slightly to avoid confusion with the original where the
  Github issues have been enabled and pull requests for ideas/contributions are welcome to this repo. 
 
 The blender project is being integrated with the
- [elasticdotventures/awesome-openscad]() RUST/wasm cargo installer for [openSCAD](), [JSopenscad](), [cadhub]().
+ [elasticdotventures/awesome-openscad]() RUST/wasm cargo installer for whatever engine you're using [openSCAD](), [JSopenscad](), [cadhub](), *AND Blender* 🤞 hoping for some harmony &amp; collaboration across the openSCAD communities.
 
 The historical openSCAD package is available on [PyPI](https://pypi.python.org/pypi/BlendSCAD), that is installed with pip and this version will be use RUST cargo instead of pip. 
 
-Development on the original python seems to be halted; it is hoped that this fork can attach this plugin to communities and take openSCAD & RUST can take this in novel directions. 
+Development on the original python seems to be halted twice; it is hoped that this fork can attach this plugin to communities and take openSCAD & RUST can take this in novel directions.  The present version on [PyPI](https://pypi.python.org/pypi/BlendSCAD) has not been updated in more than 5 years and has unmerged changes related to python 3 such that the build is failing. 
 
 This fork has the following design goals:
 
-* Ease of Use, quick painless less technically complex install into Blender
+* 🙏 Ease of Use, integration into a quick reduced-toil install into /at least/ Blender but hopefully other platforms. 
 	* RUST cargo for Linux/Unix
-	* Windows win-get, chocolatey nsis or equivalent
+	* RUST inside Windows win-get, chocolatey, nsis or equivalent
 
-* Compatibility with [VSCode] for editing & synchronization of versions & language service provider intellisense (code checker), import/export pipeline on build. 
+* 🙏 Compatibility with [VSCode](https://github.com/Antyos/vscode-openscad/issues/30) LSP for editing & synchronization of versions & language service provider intellisense (code checker), import/export pipeline on build. 
 
-* Unified compositional component library that can be embedded for discovering parameterically defined objects & tools. 
+* 🙏 Add a unified compositional component library that can be embedded for discovering parameterically defined objects & tools within the [elasticdotventures/awesome-openscad]() list. 
 
 ## from [3DLIRIOUS/blendSCAD]() .. continued
 
